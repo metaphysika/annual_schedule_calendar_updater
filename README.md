@@ -18,4 +18,4 @@ Next the program checks how old two date values are in the report.  If the date 
 
 Anything that is over one year old in the Survey Date named cell gets added to the report file. 
 
-If the "Review Date" named cell is blanis the program will add this data to a second sheet on the report file.
+If the "Review Date" named cell is blank the program will add this data to a second sheet on the report file.
