@@ -47,7 +47,7 @@ exclude = [
     "1 BISMARCK ARCHIVED - OLD DOCUMENTS", "Biomed", "FARGO ARCHIVE", "Other",
     "1 SMCF ARCHIVED - OLD DOCUMENTS", "1 ARCHIVED", "BISMARCK QC",
     "Carestream Image Look Tool", "MANDAN QC", "4 FLUORO PROCEDURE TIMES",
-    "5 Protocols", "6 Backups", "Mini C-Arm"
+    "5 Protocols", "6 Backups", "Mini C-Arm", "1 ARCHIVE"
 ]
 
 
