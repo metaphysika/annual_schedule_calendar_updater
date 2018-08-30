@@ -1,4 +1,5 @@
 import openpyxl
+import shutil
 import datetime
 import py
 import pandas as pd
@@ -8,11 +9,6 @@ import os
 import string
 from zipfile import BadZipFile
 
-# TODO:  Point the crawler at Physics drive General Xray folder
-# TODO: Create second script or add to this script that does this for fluoro
-
-
-# genxmaster = openpyxl.load_workbook("W:\SHARE8 Physics\Equipment list\Test QM Equipment List Current Year.xlsx")
 # This clears the workbook so it can be updated with new day's data
 wb = openpyxl.load_workbook(
     filename=r'W:\SHARE8 Physics\Equipment list\Upcoming Equipment Survey Summary Sheet.xlsx')
@@ -186,7 +182,7 @@ for x in (r'W:\SHARE8 Physics\General x-ray units', r'W:\SHARE8 Physics\Fluorosc
 
             # This will check if the equipment on report is due or late.
             # Late = reports with dates > 365 days
-            if overdue > datetime.timedelta(days=365):
+            if overdue > datetime.timedelta(days=385):
                 dates = []
                 dates.append(facility)
                 dates.append(equipment)
@@ -204,7 +200,7 @@ for x in (r'W:\SHARE8 Physics\General x-ray units', r'W:\SHARE8 Physics\Fluorosc
                 genxmaster.close()
                 #print ("true", overdue)
             # Due = reports with dates > 335 days but < 365 days.
-            elif overdue > datetime.timedelta(days=335) and overdue <= datetime.timedelta(days=365):
+            elif overdue > datetime.timedelta(days=335) and overdue <= datetime.timedelta(days=385):
                 dates = []
                 dates.append(facility)
                 dates.append(equipment)
@@ -274,5 +270,8 @@ for x in (r'W:\SHARE8 Physics\General x-ray units', r'W:\SHARE8 Physics\Fluorosc
         except (BadZipFile) as error:
             print(largest, error)
 
+# copy backup of autoreport data to H drive
+shutil.copy(r"W:\SHARE8 Physics\Equipment list\Physics Equipment List Auto Report Data.xlsx",
+            r"H:\Scripts\Physics Calendar Updater\Physics Equipment List Auto Report Data.xlsx")
 # TODO: Email out a copy of the report daily/weekly to everyone?
 # TODO: Maybe figure out how to add due items as tasks to the Physics calendar?
