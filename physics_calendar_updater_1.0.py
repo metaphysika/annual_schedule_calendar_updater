@@ -139,7 +139,9 @@ for x in (r'W:\SHARE8 Physics\General x-ray units', r'W:\SHARE8 Physics\Fluorosc
                 pass  # Tell the user that "review_date" name doesn't exist
             except (StopIteration, AttributeError):
                 review = None
-                review2 = None
+                # If review date blank, this ensures a blank value gets written to master sheet.
+                # Otherwise, an old reivew date will stay on the master sheet and the report will look late when it's not.
+                review2 = ""
 
             # this gets the date equipment last tested
             try:
@@ -171,7 +173,8 @@ for x in (r'W:\SHARE8 Physics\General x-ray units', r'W:\SHARE8 Physics\Fluorosc
             ws = gencal["Gen Rad"]
             for row in ws.iter_rows():
                 for cell in row:
-                    # the matches the name of the equipment on the report with the equip. on the calendar
+                    # the matches the name of the equipment on the report with the equip. on the calendar.
+                    # cell.value != None is there so it doesn't copy results to blank lines on master sheet.
                     if cell.value == system and cell.value != None:
                         # This writes the date from the report to the column next to the equip on the calendar.
                         ws.cell(row=cell.row, column=2, value=result2)
